@@ -1,0 +1,41 @@
+{
+  "name": "dbzbeds-backend",
+  "version": "1.0.0",
+  "description": "Backend for dbzbeds",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tsc",
+    "start": "node dist/index.js",
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cjs-loader": "^0.1.0",
+    "concurrently": "^7.3.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.1.2",
+    "nodemon": "^2.0.20",
+    "razorpay": "^2.9.2",
+    "sharp": "^0.30.7"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/cookie-parser": "^1.4.3",
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
+    "@types/jsonwebtoken": "^8.5.9",
+    "@types/multer": "^1.4.7",
+    "@types/node": "^18.7.3",
+    "@types/nodemailer": "^6.4.6",
+    "@types/sharp": "^0.30.5",
+    "@types/uniqid": "^5.3.2",
+    "typescript": "^4.7.4"
+  }
+}
