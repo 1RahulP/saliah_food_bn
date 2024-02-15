@@ -14,7 +14,7 @@ export interface IOrder extends Document {
     street: string,
     apartment: string,
     notes: string,
-    orderSummary: {
+    orderSummary: [{
         name: string,
         size: string,
         qty: number,
@@ -22,7 +22,7 @@ export interface IOrder extends Document {
         shipping: number,
         subTotal: number,
         total: number
-    },
+    }],
     status: string,
     createdId: string
 }
@@ -72,36 +72,38 @@ const orderSchema = new Schema<IOrder>({
         type: String,
         required: false
     },
-    orderSummary: {
-        name: {
-            type: String,
-            required: false
-        },
-        size: {
-            type: String,
-            required: false
-        },
-        qty: {
-            type: Number,
-            required: false
-        },
-        amount: {
-            type: Number,
-            required: false
-        },
-        shipping: {
-            type: Number,
-            required: false
-        },
-        subTotal: {
-            type: Number,
-            required: false
-        },
-        total: {
-            type: Number,
-            required: false
+    orderSummary: [
+        {
+            name: {
+                type: String,
+                required: false
+            },
+            size: {
+                type: String,
+                required: false
+            },
+            qty: {
+                type: Number,
+                required: false
+            },
+            amount: {
+                type: Number,
+                required: false
+            },
+            shipping: {
+                type: Number,
+                required: false
+            },
+            subTotal: {
+                type: Number,
+                required: false
+            },
+            total: {
+                type: Number,
+                required: false
+            }
         }
-    },
+    ],
     status: {
         type: String,
         default: "Pending"

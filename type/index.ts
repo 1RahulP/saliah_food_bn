@@ -1,4 +1,4 @@
-interface OrderSummary {
+type OrderItem = {
     name: string;
     size: string;
     qty: number;
@@ -6,9 +6,9 @@ interface OrderSummary {
     shipping: number;
     subTotal: number;
     total: number;
-}
+};
 
-export interface CheckoutRequest {
+type OrderRequest = {
     firstName: string;
     lastName: string;
     email: string;
@@ -20,5 +20,7 @@ export interface CheckoutRequest {
     street: string;
     apartment: string;
     notes: string;
-    orderSummary: OrderSummary;
-}
+    orderSummary: OrderItem[];
+    status: string;
+};
+

@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose")
 
 const paymentSchema = new mongoose.Schema({
   razorpay_order_id: {
@@ -13,6 +13,7 @@ const paymentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  createdId: { ref: "users", type: mongoose.Schema.Types.ObjectId }
 });
 
 export const Payment = mongoose.model("Payment", paymentSchema);

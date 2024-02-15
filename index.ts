@@ -6,12 +6,17 @@ const cors = require('cors')
 const cookieParser = require('cookie-parser')
 import singupRoutes from './routes/user'
 import Razorpay from "razorpay";
+import path from "path";
+require('dotenv').config();
+
 
 // INITIALIZING EXPREESS
 
 const app: Express = express();
 const server = createServer(app);
 const port = process.env.PORT;
+
+app.use(express.json());
 
 databaseConnect();
 
@@ -28,6 +33,11 @@ app.use(
   })
 );
 
+require('dotenv').config({ path: '.env', override: true });
+
+
+app.use('/profile', express.static(path.join(__dirname, 'uploads')));
+
 
 //ROUTES
 app.get("/", (req, res) => {
@@ -41,6 +51,7 @@ app.use("/api", singupRoutes);
 app.get("/api/getkey", (req, res) =>
   res.status(200).json({ key: process.env.RAZORPAY_API_KEY })
 );
+
 
 export const instance = new Razorpay({
   key_id: process.env.RAZORPAY_API_KEY as string,
