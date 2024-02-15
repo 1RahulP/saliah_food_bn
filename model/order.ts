@@ -2,7 +2,7 @@ import { Schema, model } from "mongoose";
 const mongoose = require("mongoose")
 
 
-export interface ICheckout extends Document {
+export interface IOrder extends Document {
     firstName: string,
     lastName: string,
     email: string,
@@ -27,7 +27,7 @@ export interface ICheckout extends Document {
     createdId: string
 }
 
-const checkoutSchema = new Schema<ICheckout>({
+const orderSchema = new Schema<IOrder>({
     firstName: {
         type: String,
         required: false
@@ -111,4 +111,4 @@ const checkoutSchema = new Schema<ICheckout>({
     { timestamps: true }
 )
 
-export default model<ICheckout>("checkout", checkoutSchema);
+export default model<IOrder>("order", orderSchema);

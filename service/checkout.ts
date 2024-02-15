@@ -1,4 +1,4 @@
-import checkout from "../model/checkout";
+import checkout from "../model/order";
 import { CheckoutRequest } from "../type";
 
 export const checkoutService = async (data: CheckoutRequest, userId: string) => {
