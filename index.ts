@@ -34,9 +34,8 @@ app.use(
 );
 
 require('dotenv').config({ path: '.env', override: true });
-
-
 app.use('/profile', express.static(path.join(__dirname, 'uploads')));
+
 
 
 //ROUTES
