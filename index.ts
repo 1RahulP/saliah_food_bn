@@ -3,7 +3,7 @@ import express, { Express } from 'express'
 import { createServer } from "http";
 import { databaseConnect } from "./config/database";
 const cors = require('cors')
-const cookieParser = require('cookie-parser')
+import cookieParser from "cookie-parser";
 import singupRoutes from './routes/user'
 import Razorpay from "razorpay";
 import path from "path";
@@ -11,12 +11,14 @@ require('dotenv').config();
 
 
 // INITIALIZING EXPREESS
-
 const app: Express = express();
 const server = createServer(app);
 const port = process.env.PORT;
 
 app.use(express.json());
+
+// Middleware to parse cookies
+app.use(cookieParser());
 
 databaseConnect();
 
@@ -24,7 +26,6 @@ databaseConnect();
 app.disable("x-powered-by");
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
-app.use(cookieParser());
 
 app.use(
   cors({

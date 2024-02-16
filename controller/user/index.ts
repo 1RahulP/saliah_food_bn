@@ -13,9 +13,9 @@ import * as fs from 'fs';
 export const handleSignupController = async (req: Request, res: Response) => {
     try {
         const { name, email, password, phone } = req.body;
-        console.log(req.body);
+        console.log(name, email, password, phone);
         if (!name || !email || !password || !phone) {
-            return res.status(400).json({ success: false, message: "All fields are required" })
+            return res.status(400).json({ success: false, message: "All fields are required" });
         }
         const [userEmail, userPhone] = await Promise.all([User.findOne({ email }), User.findOne({ phone })]);
         if (userEmail) return res.status(400).json({ success: false, message: "Account already exists with this email" });
@@ -84,7 +84,15 @@ export const handleSigninController = async (req: Request, res: Response) => {
             email: existingUser.email,
             role: existingUser?.role
         }
-        res.json({ success: true, user, token });
+        res.cookie("SALIAH_FOODS_TOKEN", token, {
+            httpOnly: true,
+            expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+        }).send({
+            success: true,
+            user,
+            token: token,
+        })
+
     } catch (error: any) {
         res.status(500).json({ error: error.message });
     }
