@@ -24,7 +24,8 @@ export interface IOrder extends Document {
         total: number
     }],
     status: string,
-    createdId: string
+    createdId: string,
+    orderId:string
 }
 
 const orderSchema = new Schema<IOrder>({
@@ -104,11 +105,16 @@ const orderSchema = new Schema<IOrder>({
             }
         }
     ],
+    // payment status
     status: {
         type: String,
         default: "Pending"
     },
-    createdId: { ref: "users", type: mongoose.Schema.Types.ObjectId }
+    createdId: { ref: "users", type: mongoose.Schema.Types.ObjectId } , 
+    orderId:{
+        type: String,
+        required: true
+    }
 },
     { timestamps: true }
 )

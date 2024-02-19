@@ -1,14 +1,13 @@
 import "dotenv/config";
-import express, { Express } from 'express'
+import express, { Express } from "express";
 import { createServer } from "http";
 import { databaseConnect } from "./config/database";
-const cors = require('cors')
+const cors = require("cors");
 import cookieParser from "cookie-parser";
-import singupRoutes from './routes/user'
+import singupRoutes from "./routes/user";
 import Razorpay from "razorpay";
 import path from "path";
-require('dotenv').config();
-
+require("dotenv").config();
 
 // INITIALIZING EXPREESS
 const app: Express = express();
@@ -34,10 +33,8 @@ app.use(
   })
 );
 
-require('dotenv').config({ path: '.env', override: true });
-app.use('/profile', express.static(path.join(__dirname, 'uploads')));
-
-
+require("dotenv").config({ path: ".env", override: true });
+app.use("/profile", express.static(path.join(__dirname, "uploads")));
 
 //ROUTES
 app.get("/", (req, res) => {
@@ -52,7 +49,6 @@ app.get("/api/getkey", (req, res) =>
   res.status(200).json({ key: process.env.RAZORPAY_API_KEY })
 );
 
-
 export const instance = new Razorpay({
   key_id: process.env.RAZORPAY_API_KEY as string,
   key_secret: process.env.RAZORPAY_API_SECRET,
@@ -60,7 +56,7 @@ export const instance = new Razorpay({
 
 // PORT LISTEN
 export const demo = server.listen(port, () => {
-  console.log(`Server Runnig http://localhost:${port}`);
+  //console.log(`Server Runnig http://localhost:${port}`);
 });
 
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> CALL FROM FRONTEND >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>

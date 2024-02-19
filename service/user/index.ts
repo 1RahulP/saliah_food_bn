@@ -20,8 +20,8 @@ export const signupService = async (
 
     const newUser = new user({
         ...payload,
-    });
-    await newUser.save();
+    })
+    await newUser.save()
     return newUser;
 };
 
